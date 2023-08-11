@@ -1,0 +1,5 @@
+name: Date Formatter Vedic
+description: A Vedic date/time formatter.
+type: module
+core_version_requirement: ^10
+package: Custom

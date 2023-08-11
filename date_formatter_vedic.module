@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Date Formatter Vedic module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function date_formatter_vedic_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.date_formatter_vedic':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module adds a Vedic date/time field formatter.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
