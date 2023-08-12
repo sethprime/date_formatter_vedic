@@ -6,17 +6,21 @@ use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
 
 /**
- * Plugin implementation of the 'vedic_default' formatter.
+ * Plugin implementation of the vedic date formatter.
  *
  * @FieldFormatter(
- *   id = "date_formatter_vedic_default",
+ *   id = "date_formatter_vedic",
  *   label = @Translation("Vedic date"),
  *   field_types = {
- *     "date_formatter_vedic"
+ *     "datetime",
+ *     "timestamp",
+ *     "created",
+ *     "changed",
+ *     "published_at",
  *   }
  * )
  */
-class VedicDefaultFormatter extends FormatterBase {
+class VedicDateFieldFormatter extends FormatterBase {
 
   /**
    * {@inheritdoc}
