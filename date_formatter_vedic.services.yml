@@ -1,4 +1,4 @@
 services:
-  date_formatter_vedic.formatter:
+  vedic_date_formatter.formatter:
     class: Drupal\date_formatter_vedic\VedicDateFormatter
-    arguments: ['@langugae_manager', '@config_factory']
+    arguments: ['@language_manager']

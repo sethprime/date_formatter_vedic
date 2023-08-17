@@ -64,14 +64,14 @@ class VedicDateFormatter {
 
       // Create a DrupalDateTime object from the timestamp and timezone.
       $datetime_settings = [
-        'langcode' = $langcode,
+        'langcode' => $langcode,
       ];
       
       $date_string = '';
       $format_date = '';
 
       $date = DrupalDateTime::createFromTimestamp($timestamp, $timezone, $datetime_settings);
-      $now = new DrupalDateTime('now', $timezone, $datetime_settings);
+      //$now = new DrupalDateTime('now', $timezone, $datetime_settings);
 
       $date_string = $date->format('Y-m-d H:i:s P') . ' but Vedic!';
 
