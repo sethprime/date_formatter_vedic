@@ -1,0 +1,7 @@
+{
+    "name": "sethprime/date_formatter_vedic",
+    "type": "drupal-custom-module",
+    "description": "Vedic date formatter plugin.",
+    "keywords": ["Drupal", "Date", "Vedic"],
+    "require": {}
+}
