@@ -35,14 +35,23 @@ class VedicDateFieldFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $element = [];
+    $elements = [];
 
+    $field_type = $items=>getFieldDefinition()->getType();
     foreach ($items as $delta => $item) {
+      if ($field_type == 'datetime') {
+        $timestamp = $item->date->getTimestamp();
+      }
+      else {
+        $timestamp = $item->value();
+      }
+
       // Render each element as markup.
-      $element[$delta] = ['#markup' => $item->value];
+      $elements[$delta] = [
+        '#markup' => $this->vedicDateFormatter->formatTimestamp($timestamp),
+      ];
     }
 
-    return $element;
+    return $elements;
   }
-
 }
