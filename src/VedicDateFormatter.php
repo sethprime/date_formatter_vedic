@@ -48,18 +48,18 @@ class VedicDateFormatter {
      */
     public function formatTimestamp($timestamp, array $options = [], $timezone = NULL, $langcode = NULL, $fieldtype = NULL) {
       if (empty($options)) {
-          // Haven't implemented config options yet.
-          // $options = $this->getOptions();
+        // Haven't implemented config options yet.
+        // $options = $this->getOptions();
       }
 
       if (empty($langcode)) {
-          $langcode = $this->languageManager->getCurrentLanguage()->getId();
+        $langcode = $this->languageManager->getCurrentLanguage()->getId();
       }
 
       // If no timezone is specified use the user's if available, or the site
       // or system default.
       if (empty($timezone)) {
-          $timezone = date_default_timezone_get();
+        $timezone = date_default_timezone_get();
       }
 
       // Create a DrupalDateTime object from the timestamp and timezone.
@@ -71,9 +71,58 @@ class VedicDateFormatter {
       $format_date = '';
 
       $date = DrupalDateTime::createFromTimestamp($timestamp, $timezone, $datetime_settings);
+      // I don't think we're using this $now yet.
       //$now = new DrupalDateTime('now', $timezone, $datetime_settings);
 
-      $date_string = $date->format('Y-m-d H:i:s P') . ' but Vedic!';
+      // Get the DateTimeZone object.
+      $timezone = $date->getTimezone();
+
+      // Get the latitude and longitude of the timezone.
+      $timezone_location = $timezone->getLocation();
+
+      // Get the sunrise time.
+      $sun_info = date_sun_info($date->getTimestamp(), $timezone_location['latitude'], $timezone_location['longitude']);
+
+
+      $date_string = '';
+
+      $day_duration = $date->getTimestamp() - $sun_info['sunrise'];
+      $muhurta_number = floor($day_duration / 60 / 48);
+
+      $muhurtas = [
+        'Cryer',
+        'Serpent',
+        'Friend',
+        'Father',
+        'Bright',
+        'Boar',
+        'Heavenly Lights in the Universe',
+        'Insight',
+        'Goat/Charioteer-Face',
+        'Many Offerings',
+        'Possessed of Chariot',
+        'Night Maker',
+        'All-Enveloping Night Sky',
+        'Possessed of Nobility',
+        'Stake',
+        'Lord who Lifted the Mount (Krishna)',
+        'Unborn Foot',
+        'Serpent at the Bottom',
+        'Nourishment',
+        'Horsement',
+        'Restrainer',
+        'Ignition',
+        'Distributor',
+        'Ornament',
+        'Limitless',
+        'Immortal',
+        'All Pervading',
+        'Resounding Light',
+        'Universe',
+        'Ocean',
+      ];
+
+      $date_string .= $muhurtas[$muhurta_number];
 
       return $date_string;
     }
