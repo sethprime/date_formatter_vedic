@@ -3,5 +3,6 @@
     "type": "drupal-custom-module",
     "description": "Vedic date formatter plugin.",
     "keywords": ["Drupal", "Date", "Vedic"],
-    "require": {}
+    "require": {},
+    "license": "MIT"
 }
